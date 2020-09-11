@@ -12,5 +12,7 @@
 	<body>
 		<c:set var="con" value="${JndiDS.getConnection()}"/>
 		<c:out value="${con}"/>
+		<br><br>
+		<a href="productList.do">상품 목록</a> <br><br>
 	</body>
 </html>

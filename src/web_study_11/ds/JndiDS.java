@@ -18,7 +18,7 @@ public class JndiDS {
 	static {
 		try {
 			InitialContext ic = new InitialContext(); // 1. JNDI 서버객체생성
-			ds = (DataSource) ic.lookup("java:comp/env/jdbc/webstudy10"); // 2. lookup()
+			ds = (DataSource) ic.lookup("java:comp/env/jdbc/webstudy11"); // 2. lookup()
 			System.out.println("ds : " + ds);
 		} catch (NamingException e) {
 			e.printStackTrace();
