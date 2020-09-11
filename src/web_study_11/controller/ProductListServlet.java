@@ -3,7 +3,6 @@ package web_study_11.controller;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +19,7 @@ public class ProductListServlet extends HttpServlet {
 
 	private ProductService service;
 
-	public void init(ServletConfig config) throws ServletException {
+	public void init() throws ServletException {
 		service = new ProductService();
 	}
 

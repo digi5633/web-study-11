@@ -23,4 +23,20 @@ public class ProductService {
 		return dao.selectProductByAll();
 	}
 
+	public int addPdt(Product pdt) {
+		return dao.insertProduct(pdt);
+	}
+
+	public int removePdt(Product pdt) {
+		return dao.deleteProduct(pdt);
+	}
+
+	public int modifyPdt(Product pdt) {
+		return dao.updateProduct(pdt);
+	}
+
+	public Product getPdtCode(Product pdt) {
+		return dao.selectProductByCode(pdt);
+	}
+
 }

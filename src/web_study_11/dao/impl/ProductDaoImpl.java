@@ -52,8 +52,8 @@ public class ProductDaoImpl implements ProductDao {
 		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
 			pstmt.setString(1, pdt.getName());
 			pstmt.setInt(2, pdt.getPrice());
-			pstmt.setString(3, pdt.getDescription());
-			pstmt.setString(4, pdt.getPictureUrl());
+			pstmt.setString(3, pdt.getPictureUrl());
+			pstmt.setString(4, pdt.getDescription());
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new CustomSQLException(e);
@@ -81,8 +81,8 @@ public class ProductDaoImpl implements ProductDao {
 		int code = rs.getInt("CODE");
 		String name = rs.getString("NAME");
 		int price = rs.getInt("PRICE");
-		String description = rs.getString("PICTUREURL");
-		String pictureUrl = rs.getString("DESCRIPTION");
+		String description = rs.getString("DESCRIPTION");
+		String pictureUrl = rs.getString("PICTUREURL");
 		return new Product(code, name, price, description, pictureUrl);
 	}
 

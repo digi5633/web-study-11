@@ -27,13 +27,13 @@
 			</tr>
 			<c:forEach var="product" items="${productList}">
 			<tr class="record">
-				<td>${product.code}</td>
+				<td align="center">${product.code}</td>
 				<td>${product.name}</td>
-				<td>${product.price}원</td>
-				<td>
+				<td align="right">${product.price}원</td>
+				<td align="center">
 					<a href="productUpdate.do?code=${product.code}">상품 수정</a>
 				</td>
-				<td>
+				<td align="center">
 					<a href="productDelete.do?code=${product.code}">상품 삭제</a>
 				</td>
 			</tr>

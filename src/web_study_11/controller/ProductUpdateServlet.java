@@ -15,8 +15,8 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import web_study_11.dto.Product;
 import web_study_11.service.ProductService;
 
-@WebServlet("/productWrite.do")
-public class ProductWriteServlet extends HttpServlet {
+@WebServlet("/productUpdate.do")
+public class ProductUpdateServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -41,12 +41,18 @@ public class ProductWriteServlet extends HttpServlet {
 
 		if (request.getMethod().equalsIgnoreCase("GET")) {
 			System.out.println("GET");
-
-			request.getRequestDispatcher("product/productWrite.jsp").forward(request, response);
+			
+			int pdtCode = Integer.parseInt(request.getParameter("code").trim());
+			Product product = service.getPdtCode(new Product(pdtCode));
+			System.out.println("product > " + product);
+			
+			request.setAttribute("product", product);
+			
+			request.getRequestDispatcher("product/productUpdate.jsp").forward(request, response);
 
 		} else {
 			System.out.println("POST");
-
+			
 			request.setCharacterEncoding("UTF-8");
 
 			ServletContext context = getServletContext();
@@ -57,23 +63,27 @@ public class ProductWriteServlet extends HttpServlet {
 
 			MultipartRequest multi = new MultipartRequest(request, path, sizeLimit, encType,
 					new DefaultFileRenamePolicy());
-
+			
+			String code = multi.getParameter("code");
 			String name = multi.getParameter("name");
 			int price = Integer.parseInt(multi.getParameter("price"));
 			String description = multi.getParameter("description");
 			String pictureUrl = multi.getFilesystemName("pictureUrl");
+			if (pictureUrl == null) {
+				pictureUrl = multi.getParameter("nonmakeImg");
+			}
 
 			Product pdt = new Product();
+			pdt.setCode(Integer.parseInt(code));
 			pdt.setName(name);
 			pdt.setPrice(price);
 			pdt.setDescription(description);
 			pdt.setPictureUrl(pictureUrl);
 
-			int res = service.addPdt(pdt);
+			int res = service.modifyPdt(pdt);
 
 			response.getWriter().print(res);
 			response.sendRedirect("productList.do");
-
 		}
 
 	}
