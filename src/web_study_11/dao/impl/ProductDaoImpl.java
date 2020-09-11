@@ -30,7 +30,7 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public List<Product> selectProductByAll() {
-		String sql = "SELECT CODE, NAME, PRICE, PICTUREURL, DESCRIPTION FROM PRODUCT";
+		String sql = "SELECT CODE, NAME, PRICE, PICTUREURL, DESCRIPTION FROM PRODUCT ORDER BY CODE";
 		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
 			if (rs.next()) {
 				ArrayList<Product> list = new ArrayList<Product>();
